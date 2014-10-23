@@ -293,7 +293,9 @@ https://en.wikipedia.org/wiki/Help:Redirect has links to more languages")
 
 (defun dimwiki-maybe-redirect (parsed)
   "Return nil if no redirect, else new search term."
-  (when (and (member (cadr parsed) dimwiki-redirect-keywords)
+  (when (and (stringp (cadr parsed))
+	     (member (replace-regexp-in-string " *$" "" (cadr parsed))
+		     dimwiki-redirect-keywords)
 	     (eq 'link (car (cadr (cdr parsed))))
 	     (stringp (cadr (cadr (cdr parsed)))))
     (cadr (cadr (cdr parsed)))))
