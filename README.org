@@ -1,0 +1,7 @@
+* dimwiki
+This is very simple mediawiki "parser" which the author uses for
+getting quick abstracts of an article (similar to what the search
+engine DuckDuckGo shows) in the minibuffer.
+
+: M-: (require 'dimwiki)
+: M-x dimwiki-search
