@@ -28,6 +28,7 @@
 
 (require 'json)
 (require 'url)
+(require 'ert)
 
 (defvar dimwiki-wikidomains '("nn.wikipedia.org"
 			      "no.wikipedia.org"
@@ -108,7 +109,7 @@ https://en.wikipedia.org/wiki/Help:Redirect has links to more languages")
     (cons 'doc (dimwiki-doc))))
 
 (defun dimwiki-doc ()
-  (let (parsed)
+  (let (parsed cur-tok)
     (catch 'break
       (while (setq cur-tok (dimwiki-peektok))
 	(cond ((equal "[[" cur-tok)
@@ -307,7 +308,7 @@ https://en.wikipedia.org/wiki/Help:Redirect has links to more languages")
 
 (defun dimwiki-scatter-search-query (term)
   (let ((domains dimwiki-wikidomains)
-	parsed)
+	parsed article)
     (while (and domains (not parsed))
       (setq article (dimwiki-extract-article-from-json
 		     (dimwiki-send-search-query term
