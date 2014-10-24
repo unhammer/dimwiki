@@ -304,9 +304,11 @@ https://en.wikipedia.org/wiki/Help:Redirect has links to more languages")
   (replace-regexp-in-string
    "^\\s +" ""
    (replace-regexp-in-string
-    " *\n *\\|  +" " "
-    (apply 'concat (dimwiki-flatten
-		    (dimwiki-justext parsed))))))
+    "<!--[^>]*-->" " "
+    (replace-regexp-in-string
+     " *\n *\\|  +" " "
+     (apply 'concat (dimwiki-flatten
+		     (dimwiki-justext parsed)))))))
 
 (defun dimwiki-scatter-search-query (term)
   (let ((domains dimwiki-wikidomains)
