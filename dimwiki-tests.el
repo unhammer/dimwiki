@@ -22,6 +22,7 @@
 ;;; Code:
 
 (require 'ert)
+(load-file "./dimwiki.el")
 (require 'dimwiki)
 
 (ert-deftest dimwiki--parse ()
